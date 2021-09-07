@@ -1,0 +1,32 @@
+# name: run-tests
+# on: [push]
+# jobs:
+#   run:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: iterative/setup-cml@v1
+#       - name: Install requirements
+#         env:
+#           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+#         run: |
+#           pip install -r requirements.txt
+#           echo "## Installed requirements successfully"
+#       - name: Fetch data
+#         env:
+#           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+#         run: |
+#           dvc pull data/data.csv --run-cache
+#           echo "## Data pulled from dvc remote"
+#       - name: Run test cases
+#         env:
+#           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+#         run: |
+#           cd tests 
+#           python test_structural_model.py
+#           python test_causal_graphing.py
+#           # Post reports as comments in GitHub PRs
+#           echo "Tests run successfully" 
