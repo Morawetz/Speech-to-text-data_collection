@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+
+    postgres:                                           # create postgres container
+        image: postgres:9.6
+        container_name: postgres_container
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
