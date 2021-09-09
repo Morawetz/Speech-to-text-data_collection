@@ -3,12 +3,27 @@ from flask.helpers import send_file
 from werkzeug.exceptions import Forbidden, HTTPException, NotFound, RequestTimeout, Unauthorized
 from werkzeug.utils import secure_filename
 import os
-app = Flask(__name__)
+import pandas as pd
 
+app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Baba'
+    return render_template('index.html')
+
+
+@app.route('/volunteer', methods = ['GET', 'POST'])
+def get_audio():
+    if request.method == 'GET':
+        # randomly select text and send to user
+        text =  "አገራችን ከአፍሪካም ሆነ ከሌሎች የአለም አገራት ጋር ያላትን አለም አቀፋዊ ግንኙነት ወደ ላቀ ደረጃ ያሸጋገረ ሆኗል በአገር ውስጥ አራት አለም ጀልባያውም የወረቀት"
+        return render_template('volunteer.html',data=text)
+    if request.method == 'POST':
+        # Get the file from post request
+        f = request.data
+        print(type(f))
+        print(f)
+        return 'Done'
 
 
 @app.errorhandler(NotFound)
@@ -29,8 +44,6 @@ def forbidden_handler(e: HTTPException):
 @app.errorhandler(RequestTimeout)
 def request_timeout_handler(e: HTTPException):
     return '<h1>408.html</h1>', 408
-
-
 
 if __name__ == '__main__':
     os.environ.setdefault('Flask_SETTINGS_MODULE', 'helloworld.settings')
