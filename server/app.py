@@ -23,8 +23,13 @@ def get_audio():
         f = request.data
         print(type(f))
         print(f)
+        # TODO connect with kafka cluster
+        # TODO stream bytes to kafka as a producer
+    
         return 'Done'
 
+# TODO make a consumer to consume from kafka
+# TODO connect flask app to S3 bucket
 
 @app.errorhandler(NotFound)
 def page_not_found_handler(e: HTTPException):
