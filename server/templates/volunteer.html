@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+
+    <div class="container">
+        <div class="row">
+
+
+
+    <div class="wrapper">
+
+        <header>
+            <h1>Recording page</h1>
+            <h2>Please hit the record button and record the audio for the text you see below!</h2>
+            <h3>{{data}}</h3>
+        </header>
+  
+        <section class="main-controls">
+          <canvas class="visualizer" height="60px"></canvas>
+          <div id="buttons">
+            <button class="record">Record</button>
+            <button class="stop">Stop</button>
+          </div>
+        </section>
+  
+        <section class="sound-clips">
+  
+            
+        </section>
+        <button id="upload" style="width: 100%; height: 50px;">Upload</button>
+        
+
+      </div>
+
+    
+<script src="{{ url_for('static', filename='js/recorder.js')}}" async defer></script>
+
+</div>
+</div>
+</section>
+{% endblock %}
