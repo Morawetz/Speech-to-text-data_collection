@@ -5,7 +5,20 @@ from werkzeug.utils import secure_filename
 import os
 import pandas as pd
 
+from kafka import KafkaProducer
+from kafka import KafkaConsumer
+
 app = Flask(__name__)
+
+producer = KafkaProducer(bootstrap_servers=["b-1.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092",
+    "b-2.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092"],api_version = (0,10,1))
+
+
+consumer = KafkaConsumer('group6_test', client_id='d_id',
+                             bootstrap_servers=["b-1.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092","b-2.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092"],
+                             auto_offset_reset='earliest',
+                             enable_auto_commit=False)
+
 
 @app.route('/')
 def index():
@@ -18,18 +31,17 @@ def get_audio():
         # randomly select text and send to user
         text =  "አገራችን ከአፍሪካም ሆነ ከሌሎች የአለም አገራት ጋር ያላትን አለም አቀፋዊ ግንኙነት ወደ ላቀ ደረጃ ያሸጋገረ ሆኗል በአገር ውስጥ አራት አለም ጀልባያውም የወረቀት"
         return render_template('volunteer.html',data=text)
+      
     if request.method == 'POST':
         # Get the file from post request
         f = request.data
         print(type(f))
         print(f)
-        # TODO connect with kafka cluster
-        # TODO stream bytes to kafka as a producer
-    
-        return 'Done'
 
-# TODO make a consumer to consume from kafka
-# TODO connect flask app to S3 bucket
+        producer.send("group6_test",f)
+        return 'Done'
+    
+
 
 @app.errorhandler(NotFound)
 def page_not_found_handler(e: HTTPException):
