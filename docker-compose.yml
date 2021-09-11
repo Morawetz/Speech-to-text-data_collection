@@ -18,10 +18,12 @@ services:
         environment:
             - LOAD_EX=n
             - EXECUTOR=Local
-        volumes:                                        # mount the following local folders
+        volumes:
+                                        # mount the following local folders
             - ./dags:/usr/local/airflow/dags
-            - ./data:/usr/local/airflow/data
             - ./models:/usr/local/airflow/models
+            - ./data:/usr/local/airflow/data
+            
         ports:
             - "8000:8080"                               # expose port
         command: webserver
