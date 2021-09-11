@@ -4,6 +4,7 @@ from werkzeug.exceptions import Forbidden, HTTPException, NotFound, RequestTimeo
 from werkzeug.utils import secure_filename
 import os
 import pandas as pd
+
 from kafka import KafkaProducer
 from kafka import KafkaConsumer
 
@@ -18,6 +19,7 @@ consumer = KafkaConsumer('group6_test', client_id='d_id',
                              auto_offset_reset='earliest',
                              enable_auto_commit=False)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -29,16 +31,16 @@ def get_audio():
         # randomly select text and send to user
         text =  "አገራችን ከአፍሪካም ሆነ ከሌሎች የአለም አገራት ጋር ያላትን አለም አቀፋዊ ግንኙነት ወደ ላቀ ደረጃ ያሸጋገረ ሆኗል በአገር ውስጥ አራት አለም ጀልባያውም የወረቀት"
         return render_template('volunteer.html',data=text)
-    
+      
     if request.method == 'POST':
         # Get the file from post request
         f = request.data
         print(type(f))
         print(f)
+
         producer.send("group6_test",f)
         return 'Done'
     
-
 
 
 @app.errorhandler(NotFound)
