@@ -14,10 +14,12 @@ producer = KafkaProducer(bootstrap_servers=["b-1.demo-cluster-1.9q7lp7.c1.kafka.
     "b-2.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092"],api_version = (0,10,1))
 
 
-consumer = KafkaConsumer('group6_test', client_id='d_id',
-                             bootstrap_servers=["b-1.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092","b-2.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092"],
+consumer = KafkaConsumer('morawetz_text_topic',
+                             client_id='d_id',
+                             bootstrap_servers=["b-1.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092",
+    "b-2.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092"],
                              auto_offset_reset='earliest',
-                             enable_auto_commit=False)
+                             enable_auto_commit=False,)
 
 
 @app.route('/')
@@ -28,8 +30,11 @@ def index():
 @app.route('/volunteer', methods = ['GET', 'POST'])
 def get_audio():
     if request.method == 'GET':
-        # randomly select text and send to user
-        text =  "አገራችን ከአፍሪካም ሆነ ከሌሎች የአለም አገራት ጋር ያላትን አለም አቀፋዊ ግንኙነት ወደ ላቀ ደረጃ ያሸጋገረ ሆኗል በአገር ውስጥ አራት አለም ጀልባያውም የወረቀት"
+        print("inside volunteer get request")
+        last_msg = consumer.poll(timeout_ms=100,max_records=1)
+        conv = list(last_msg.values())[0][0].value
+        text = conv.decode()
+        print(text)
         return render_template('volunteer.html',data=text)
       
     if request.method == 'POST':
