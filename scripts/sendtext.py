@@ -15,7 +15,7 @@ print(df.head())
 
 for row in df.head(5):
     #print(json.dumps(row).encode('utf-8'))
-    future = producer.send('group6_test',json.dumps(row).encode('utf-8'))
+    future = producer.send('morawetz_text_topic',json.dumps(row,ensure_ascii=False).encode('utf-8'))
     try:
         record_metadata = future.get(timeout=10)
     except KafkaError:
