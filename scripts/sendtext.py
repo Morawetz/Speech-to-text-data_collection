@@ -9,7 +9,7 @@ spark = SparkSession.builder.appName('testspark').getOrCreate()
 producer = KafkaProducer(bootstrap_servers=["b-1.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092",
 "b-2.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092"],api_version = (0,10,1))
 
-df = spark.read.csv("s3a://fumbabucket/Clean_Amharic.csv")
+df = spark.read.csv("s3://fumbabucket/Clean_Amharic.csv")
 
 print(df.head())
 
