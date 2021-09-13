@@ -31,4 +31,4 @@ You will be presented with a statement in Amharic. Click on 'Record' and read th
 
 ## Architecture
 Following is a detailed technical diagram showing the configuration of the archictecure.
-![Architecture](https://github.com/Morawetz/Speech-to-text-data_collection/blob/documentation/screenshots/data_pipeline%20(1).png)
+![Architecture](https://github.com/Morawetz/Speech-to-text-data_collection/blob/documentation/screenshots/data_pipelinee.png)
