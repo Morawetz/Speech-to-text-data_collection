@@ -12,17 +12,24 @@ transformation in a distributed manner, and load it into a warehouse in a suitab
 ## Table of Contents
   - [Introduction](#Introduction)
   - [Technologies Used](#Technologies)
-  - [Installation](#Installation)
+  - [ Volunteer](#Volunteer)
   - [Folders](#Folders)
+  - [Architecture](#Architecture)
 
 ## Technologies
-  - [Apache Kafka](): To sequentially log streaming data into specific topics 
-  - [Apache Airflow](): To create,ocherstrate and monitor data workflows 
-  - [Apache Spark]():To transform and load  data from Kafka cluster
+  - [Apache Kafka](https://kafka.apache.org/documentation/#quickstart_download): To sequentially log streaming data into specific topics 
+  - [Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/installation.html): To create,ocherstrate and monitor data workflows 
+  - [Apache Spark](https://spark.apache.org/downloads.html):To transform and load  data from Kafka cluster
   - [S3 Buckets](): For storing transformed streaming data 
 
-## Installation
-  - <a href="https://kafka.apache.org/documentation/#quickstart_download" target="_blank">[Apache Kafka]:</a> <br>
-  - <a href="https://airflow.apache.org/docs/apache-airflow/stable/installation.html">[Apache Airflow]:</a>
-  - <a href="https://spark.apache.org/downloads.html">[Spark Airflow]:</a>
+## Volunteer
+To help us in collecting data audio data for Amharic language, visit [datacollectionpipeline](https://datacollectionpipeline.herokuapp.com/).
+On the home page, go to 'CONTRIBUTE AUDIO'.
+
+You will be presented with a statement in Amharic. Click on 'Record' and read the statement out loud. Once you have finished, click 'Stop' and send. 
+![Record Aduio](https://github.com/Morawetz/Speech-to-text-data_collection/blob/main/screenshots/stopped.png)
+
+## Architecture
+Following is a detailed technical diagram showing the configuration of the archictecure.
+![Architecture](https://github.com/Morawetz/Speech-to-text-data_collection/blob/documentation/screenshots/data_pipelinne.png)
   
