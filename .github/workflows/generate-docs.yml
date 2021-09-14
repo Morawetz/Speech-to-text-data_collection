@@ -18,7 +18,8 @@ jobs:
           pip install -r requirements.txt
           pip install pdoc
           sudo apt update
-          pdoc ./
+          ls -l
+          #pdoc ./
           
           
           echo "Generate Documentation"
