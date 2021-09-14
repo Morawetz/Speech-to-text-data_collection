@@ -22,4 +22,4 @@ jobs:
           pdoc sendtext.py
           
           
-          echo "Generate Documentation"
+          echo "Test Generate Documentation"
