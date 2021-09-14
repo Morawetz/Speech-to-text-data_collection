@@ -55,7 +55,7 @@ if (navigator.mediaDevices.getUserMedia) {
       console.log("data available after MediaRecorder.stop() called.");
 
     //   TODO replace name with server generated name
-      const clipName = "some audio name from server";
+      const clipName = fileName;
 
       const clipContainer = document.createElement('article');
       const clipLabel = document.createElement('p');
@@ -87,25 +87,44 @@ if (navigator.mediaDevices.getUserMedia) {
 
       document.getElementById('upload').style.display = "block"
 
+      var data = {
+        key: fileName,
+        data: blob
+      }
+      console.log(blob)
+    
+ 
+      var fd = new FormData();
+      fd.append('fname', fileName);
+      fd.append('blob', blob);
+      console.log(fd)
+
+  // myarray = JSON.stringify(myarray)
       $("#upload").click(function () {
     
+        var ajax = new XMLHttpRequest();
+      ajax.open('POST', '/volunteer', true);
     
+
+      
+      ajax.send(formData);
         // Make prediction by calling api /predict
-        $.ajax({
-          type: "POST",
-          url: "/volunteer",
-          data: blob,
-          contentType: false,
-          cache: false,
-          processData: false,
-          async: true,
-          success: function (data) {
-            // Get and display the result
-            console.log("POST request successful")
-            console.log("data:", data);
-            // $("#result").text(" Result:  " + data);
-          },
-        });
+        // Make prediction by calling api /predict
+        // $.ajax({
+        //   type: "POST",
+        //   url: `/volunteer/`,
+        //   data: fd,
+        //   contentType: false,
+        //   cache: false,
+        //   processData: false,
+        //   async: true,
+        //   success: function (data) {
+        //     // Get and display the result
+        //     console.log("POST request successful")
+        //     console.log("data:", data);
+        //     // $("#result").text(" Result:  " + data);
+        //   },
+        // });
       });
 
       
