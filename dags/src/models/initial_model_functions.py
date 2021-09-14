@@ -1,30 +1,19 @@
-import sys
+import keras
+from keras.datasets import mnist
+from keras.models import Sequential, load_model
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D
+from keras import backend as K
+import pickle
+import logging
 import os
-
-import sys
-import os
-
-from setuptools import setup, find_packages
-setup(
-    name = 'initial',
-    packages = find_packages(),
-)
-
-from initial import dataset_loader
-
-from . import dataset_loader
-from . import FeatureExtraction
-
-
 from .initial.dataset_loader import load_audio_files, load_transcripts, load_spectrograms_with_transcripts, load_spectrograms_with_transcripts_in_batches
-from .resize_and_augment import resize_audios_mono, augment_audio, equalize_transcript_dimension
-from .FeatureExtraction import FeatureExtraction
-from .transcript_encoder import fit_label_encoder, encode_transcripts, decode_predicted
+from .initial.resize_and_augment import resize_audios_mono, augment_audio, equalize_transcript_dimension
+from .initial.FeatureExtraction import FeatureExtraction
+from .initial.transcript_encoder import fit_label_encoder, encode_transcripts, decode_predicted
 # from models import model_1, model_2, model_3, model_4
-from .new_model import my_model
+from .initial.new_model import my_model
 from jiwer import wer
-
-
 import librosa   #for audio processing
 import librosa.display
 import matplotlib.pyplot as plt
@@ -34,7 +23,6 @@ import mlflow
 import mlflow.keras
 import os
 import logging
-# len(os.listdir('../../ALFFA_PUBLIC/ASR/AMHARIC/data/train/wav/'))
 
 def load_preprocess(**kwargs):
     # len(os.listdir('../../../../data/'))
@@ -55,8 +43,8 @@ def load_preprocess(**kwargs):
     audio_files = resize_audios_mono(audio_files, 440295)
     print("resized shape", audio_files[demo_audio].shape)
 
-    audio_files = augment_audio(audio_files, sample_rate)
-    print("augmented shape", audio_files[demo_audio].shape)
+    # audio_files = augment_audio(audio_files, sample_rate)
+    # print("augmented shape", audio_files[demo_audio].shape)
 
     char_encoder = fit_label_encoder(transcripts)
     transcripts_encoded = encode_transcripts(transcripts, char_encoder)
@@ -79,8 +67,28 @@ def load_preprocess(**kwargs):
     
     return X_train, y_train, X_test, y_test, X_val, y_val
 
-mlflow.set_tracking_uri('../')
-mlflow.keras.autolog()
+
+def construct_model(num_classes, input_shape):
+
+	# construct model framework
+	# source: https://keras.io/examples/mnist_cnn/
+
+	model = Sequential()
+	model.add(Conv2D(32, kernel_size=(3, 3),
+					 activation='relu',
+					 input_shape=input_shape))
+	model.add(Conv2D(64, (3, 3), activation='relu'))
+	model.add(MaxPooling2D(pool_size=(2, 2)))
+	model.add(Dropout(0.25))
+	model.add(Flatten())
+	model.add(Dense(128, activation='relu'))
+	model.add(Dropout(0.5))
+	model.add(Dense(num_classes, activation='softmax'))
+
+	model.compile(loss=keras.losses.categorical_crossentropy,
+				  optimizer=keras.optimizers.Adadelta(),
+				  metrics=['accuracy'])
+	return model
 
 
 def fit_model(**kwargs):
@@ -100,7 +108,7 @@ def fit_model(**kwargs):
     y_val = loaded[5]
 
     import tensorflow as tf
-    from .new_model import LogMelgramLayer, CTCLayer
+    from .initial.new_model import LogMelgramLayer, CTCLayer
     model = tf.keras.models.load_model('/usr/local/airflow/dags/src/models/new_model_v1_2000.h5', 
                                         custom_objects = {
                                             'LogMelgramLayer': LogMelgramLayer ,
@@ -108,12 +116,27 @@ def fit_model(**kwargs):
                                         )
     print(model.summary())
 
+    import numpy as np
+   
+    
+    X_train = X_train.tolist()
+    X_val = X_val.tolist()
+    logging.info("Variables successfully converted to list")
+    # cant convert to tensor
+    # X_train = tf.convert_to_tensor(
+    # X_train, dtype=None, dtype_hint=None, name=None
+    # )
+    # X_val = tf.convert_to_tensor(
+    # X_val, dtype=None, dtype_hint=None, name=None   
+    # )
+
+    X_train = np.asarray(X_train)
+    X_val = np.asarray(X_val)
+    print("++++++++++++++++++++++++++ converted to numpy")
+    # we have a numpy object array filled with np float arrays
     history = model.fit([X_train, y_train], 
                         validation_data = [X_val, y_val], 
                         batch_size = kwargs['batch_size'], epochs = kwargs['epochs'])
                         # bs=25, epochs=100
 
     model.save(os.getcwd() + kwargs['initial_model_path'])
-
-if __name__ == "__main__":
-    load_preprocess()
