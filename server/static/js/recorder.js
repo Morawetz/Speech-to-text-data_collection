@@ -55,7 +55,7 @@ if (navigator.mediaDevices.getUserMedia) {
       console.log("data available after MediaRecorder.stop() called.");
 
     //   TODO replace name with server generated name
-      const clipName = "some audio name from server";
+      const clipName = fileName;
 
       const clipContainer = document.createElement('article');
       const clipLabel = document.createElement('p');
@@ -80,6 +80,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
       audio.controls = true;
       const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+      let file = new File([blob], 'recording.ogg');
       chunks = [];
       const audioURL = window.URL.createObjectURL(blob);
       audio.src = audioURL;
@@ -87,14 +88,29 @@ if (navigator.mediaDevices.getUserMedia) {
 
       document.getElementById('upload').style.display = "block"
 
+      var data = {
+        key: fileName,
+        data: blob
+      }
+      console.log(blob)
+      // works
+      console.log("Data",data)
+    
+ 
+      var fd = new FormData();
+      fd.append('fname', fileName);
+      fd.append('blob', blob);
+      console.log(fd)
+
+  // myarray = JSON.stringify(myarray)
       $("#upload").click(function () {
-    
-    
+
+        // Make prediction by calling api /predict
         // Make prediction by calling api /predict
         $.ajax({
           type: "POST",
           url: "/volunteer",
-          data: blob,
+          data: fd,
           contentType: false,
           cache: false,
           processData: false,

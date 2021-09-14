@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, json, request, render_template, jsonify
 from flask.helpers import send_file
 from werkzeug.exceptions import Forbidden, HTTPException, NotFound, RequestTimeout, Unauthorized
 from werkzeug.utils import secure_filename
@@ -7,6 +7,7 @@ import pandas as pd
 
 from kafka import KafkaProducer
 from kafka import KafkaConsumer
+import codecs
 
 app = Flask(__name__)
 
@@ -14,12 +15,14 @@ producer = KafkaProducer(bootstrap_servers=["b-1.demo-cluster-1.9q7lp7.c1.kafka.
     "b-2.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092"],api_version = (0,10,1))
 
 
-consumer = KafkaConsumer('morawetz_text_topic',
+consumer = KafkaConsumer('group7_text_topic',
                              client_id='d_id',
                              bootstrap_servers=["b-1.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092",
     "b-2.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092"],
                              auto_offset_reset='earliest',
-                             enable_auto_commit=False,)
+                             enable_auto_commit = False
+                             )
+
 
 
 @app.route('/')
@@ -32,18 +35,44 @@ def get_audio():
     if request.method == 'GET':
         print("inside volunteer get request")
         last_msg = consumer.poll(timeout_ms=100,max_records=1)
+        last_key = consumer.poll(timeout_ms=100,max_records=1)
+        print("TYPE++++++++++", type(last_msg))
+        print(last_msg)
         conv = list(last_msg.values())[0][0].value
-        text = conv.decode()
-        print(text)
-        return render_template('volunteer.html',data=text)
-      
+        conv_key = list(last_key.values())[0][0].value
+        print("TYPE++++++++++", type(conv))
+        # text = conv.decode()
+        conv = conv.decode()
+
+        # print(text)
+        # text = list(text)
+        # text = text[0]
+ 
+        key = "sentence 1"
+        content = {
+            "key":conv_key,
+            "text":conv
+        }
+        return render_template('volunteer.html',content=content)
+
+
+
     if request.method == 'POST':
         # Get the file from post request
-        f = request.data
-        print(type(f))
-        print(f)
+        # data = request.data
+        print("+++===============================================")
+        # data = request.form
+        # blob = request.files
 
-        producer.send("group6_test",f)
+        
+        blob = request.files['blob'].read()
+
+        print("FILE===================",blob)
+
+        print(request.form.getlist('fname'))
+
+        producer.send("group7_text", bytes('audioname', encoding="utf-8"))
+        producer.send("group7_audio",blob)
         return 'Done'
     
 
@@ -71,5 +100,5 @@ if __name__ == '__main__':
     os.environ.setdefault('Flask_SETTINGS_MODULE', 'helloworld.settings')
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
-    port = int(os.environ.get("PORT", 33507))
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 6001))
+    app.run(debug=True, port=9999)

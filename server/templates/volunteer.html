@@ -15,7 +15,7 @@
         <header>
             <h1>Recording page</h1>
             <h2>Please hit the record button and record the audio for the text you see below!</h2>
-            <h3>{{data}}</h3>
+            <h3>{{ content['text'] }}</h3>
         </header>
   
         <section class="main-controls">
@@ -35,7 +35,9 @@
 
       </div>
 
-    
+    <script type="text/javascript">
+      fileName = '{{ content.key }}'
+    </script>
 <script src="{{ url_for('static', filename='js/recorder.js')}}" async defer></script>
 
 </div>
