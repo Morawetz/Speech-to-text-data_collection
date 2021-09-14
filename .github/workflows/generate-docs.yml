@@ -1,0 +1,25 @@
+name: Generate docs
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Generate documentation
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Post reports as comments in GitHub PRs
+          sudo apt-get update
+          cd airflow_docker
+          pip install scipy
+          pip install -r requirements.txt
+          pip install pdoc
+          sudo apt update
+          cd ../scripts
+          pdoc sendtext.py
+          
+          
+          echo "Generate Documentation"
