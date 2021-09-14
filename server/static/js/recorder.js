@@ -80,6 +80,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
       audio.controls = true;
       const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+      let file = new File([blob], 'recording.ogg');
       chunks = [];
       const audioURL = window.URL.createObjectURL(blob);
       audio.src = audioURL;
@@ -92,6 +93,8 @@ if (navigator.mediaDevices.getUserMedia) {
         data: blob
       }
       console.log(blob)
+      // works
+      console.log("Data",data)
     
  
       var fd = new FormData();
@@ -101,30 +104,24 @@ if (navigator.mediaDevices.getUserMedia) {
 
   // myarray = JSON.stringify(myarray)
       $("#upload").click(function () {
-    
-        var ajax = new XMLHttpRequest();
-      ajax.open('POST', '/volunteer', true);
-    
 
-      
-      ajax.send(formData);
         // Make prediction by calling api /predict
         // Make prediction by calling api /predict
-        // $.ajax({
-        //   type: "POST",
-        //   url: `/volunteer/`,
-        //   data: fd,
-        //   contentType: false,
-        //   cache: false,
-        //   processData: false,
-        //   async: true,
-        //   success: function (data) {
-        //     // Get and display the result
-        //     console.log("POST request successful")
-        //     console.log("data:", data);
-        //     // $("#result").text(" Result:  " + data);
-        //   },
-        // });
+        $.ajax({
+          type: "POST",
+          url: "/volunteer",
+          data: fd,
+          contentType: false,
+          cache: false,
+          processData: false,
+          async: true,
+          success: function (data) {
+            // Get and display the result
+            console.log("POST request successful")
+            console.log("data:", data);
+            // $("#result").text(" Result:  " + data);
+          },
+        });
       });
 
       
