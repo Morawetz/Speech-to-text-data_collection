@@ -47,6 +47,8 @@ def get_data_from_kafka(**kwargs):
         xs = np.array(xs)           # put Xs in the right shape for our CNN
         ys = np.array(ys)                   # put ys in the right shape for our CNN
 
+
+
         new_samples = [xs, ys]
 
         pickle.dump(new_samples, open(os.getcwd()+kwargs['path_new_data']+str(time.strftime("%Y%m%d_%H%M"))+"_new_samples.p", "wb"))     # write data
@@ -62,7 +64,8 @@ def get_data_from_kafka(**kwargs):
 def load_data(**kwargs):
 
     # Load the Kafka-fetched data that is stored in the to_use_for_model_update folder
-
+    # x,y
+    
     for file_d in os.listdir(os.getcwd()+kwargs['path_new_data']):
 
         if 'new_samples.p' in file_d:
