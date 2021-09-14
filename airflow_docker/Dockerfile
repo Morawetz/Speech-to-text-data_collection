@@ -13,7 +13,6 @@ RUN pip --default-timeout=100 install -r requirements.txt
 # install cert because tf couldnt install
 RUN pip install pip_system_certs
 RUN pip install absl-py
-RUN pip --default-timeout=10000 install tensorflow==2.3.0
 RUN pip install jiwer
 RUN pip install h5py==2.10.0
 # 
