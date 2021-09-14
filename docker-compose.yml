@@ -8,3 +8,40 @@ services:
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
             - POSTGRES_DB=airflow
+
+    airflow:                                            # create airflow container
+        build: './airflow_docker'                       # construct the container along the Dockerfile in this folder
+        container_name: airflow_container
+        restart: always
+        depends_on:
+            - postgres
+        environment:
+            - LOAD_EX=n
+            - EXECUTOR=Local
+        volumes:
+                                        # mount the following local folders
+            - ./dags:/usr/local/airflow/dags
+            - ./models:/usr/local/airflow/models
+            - ./data:/usr/local/airflow/data
+            
+        ports:
+            - "8000:8080"                               # expose port
+        command: webserver
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
+
+    zookeeper:                                          # create zookeeper container
+        image: wurstmeister/zookeeper
+        container_name: zookeeper_container
+        ports:
+            - "2181:2181"                               # expose port
+
+    mlflow:                                             # create a MLFlow container
+        build: './mlflow_docker'                        # construct the container along the Dockerfile in this folder
+        container_name: mlflow_container
+        ports:
+            - "5000:5000"                               # expose port
+        command: 'mlflow server --backend-store-uri ./mlflow --host 0.0.0.0 --port 5000'
