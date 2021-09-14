@@ -19,7 +19,7 @@ jobs:
           pip install pdoc
           sudo apt update
           cd ../scripts
-          pdoc ./
+          pdoc sendtext.py
           
           
           echo "Generate Documentation"
