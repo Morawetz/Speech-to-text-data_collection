@@ -14,6 +14,7 @@ jobs:
           # Post reports as comments in GitHub PRs
           sudo apt-get update
           cd airflow_docker
+          pip install scipy
           pip install -r requirements.txt
           pip install pdoc
           sudo apt update
