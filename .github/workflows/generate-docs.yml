@@ -19,7 +19,7 @@ jobs:
           pip install pdoc
           sudo apt update
           ls -l
-          #pdoc ./
+          pdoc ./scripts
           
           
           echo "Generate Documentation"
