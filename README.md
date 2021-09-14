@@ -18,10 +18,11 @@ transformation in a distributed manner, and load it into a warehouse in a suitab
 ## Technologies
   - [Apache Kafka](): To sequentially log streaming data into specific topics 
   - [Apache Airflow](): To create,ocherstrate and monitor data workflows 
-  - [Apache Spark]():To transform and load from Kafka cluster
+  - [Apache Spark]():To transform and load  data from Kafka cluster
   - [S3 Buckets](): For storing transformed streaming data 
 
 ## Installation
   - <a href="https://kafka.apache.org/documentation/#quickstart_download" target="_blank">[Apache Kafka]:</a> <br>
-  - <a href="https://airflow.apache.org/docs/apache-airflow/stable/installation.html">[Apache Airflow]:</a> 
+  - <a href="https://airflow.apache.org/docs/apache-airflow/stable/installation.html">[Apache Airflow]:</a>
+  - <a href="https://spark.apache.org/downloads.html">[Spark Airflow]:</a>
   
