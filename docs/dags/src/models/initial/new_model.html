@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>dags.src.models.initial.new_model API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>dags.src.models.initial.new_model</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import tensorflow as tf
+import tensorflow.keras.layers as layers
+
+NUM_FFT = 512
+NUM_FREQS = 257
+# some tentative constants
+NUM_MEL = 60
+SAMPLE_RATE = 44100
+F_MIN = 0
+F_MAX = 12000
+
+class LogMelgramLayer(tf.keras.layers.Layer):
+    def __init__(self, num_fft, hop_length, **kwargs):
+        super(LogMelgramLayer, self).__init__(**kwargs)
+        self.num_fft = num_fft
+        self.hop_length = hop_length
+
+        assert num_fft // 2 + 1 == NUM_FREQS
+        lin_to_mel_matrix = tf.signal.linear_to_mel_weight_matrix(
+            num_mel_bins=NUM_MEL,
+            num_spectrogram_bins=NUM_FREQS,
+            sample_rate=SAMPLE_RATE,
+            lower_edge_hertz=F_MIN,
+            upper_edge_hertz=F_MAX,
+        )
+
+        self.lin_to_mel_matrix = lin_to_mel_matrix
+
+    def build(self, input_shape):
+        self.non_trainable_weights.append(self.lin_to_mel_matrix)
+        super(LogMelgramLayer, self).build(input_shape)
+
+    def call(self, input):
+        &#34;&#34;&#34;
+        Args:
+            input (tensor): Batch of mono waveform, shape: (None, N)
+        Returns:
+            log_melgrams (tensor): Batch of log mel-spectrograms, shape: (None, num_frame, mel_bins, channel=1)
+        &#34;&#34;&#34;
+
+        def _tf_log10(x):
+            numerator = tf.math.log(x)
+            denominator = tf.math.log(tf.constant(10, dtype=numerator.dtype))
+            return numerator / denominator
+      
+        # tf.signal.stft seems to be applied along the last axis
+        stfts = tf.signal.stft(
+            input, frame_length=self.num_fft, frame_step=self.hop_length
+        )
+        mag_stfts = tf.abs(stfts)
+
+        melgrams = tf.tensordot(tf.square(mag_stfts), self.lin_to_mel_matrix, axes=[2, 0])
+        log_melgrams = _tf_log10(melgrams + 10**-5)
+        return tf.expand_dims(log_melgrams, 3)
+
+    def get_config(self):
+        config = {&#39;num_fft&#39;: self.num_fft, &#39;hop_length&#39;: self.hop_length}
+        base_config = super(LogMelgramLayer, self).get_config()
+        return dict(list(config.items()) + list(base_config.items()))
+
+class CTCLayer(layers.Layer):
+    def __init__(self, name=None, **kwargs):
+        super().__init__(name=name)
+        self.loss_fn = tf.keras.backend.ctc_batch_cost
+
+    def call(self, y_true, y_pred):
+        # Compute the training-time loss value and add it
+        # to the layer using `self.add_loss()`.
+        batch_len = tf.cast(tf.shape(y_true)[0], dtype=&#34;int64&#34;)
+        input_length = tf.cast(tf.shape(y_pred)[1], dtype=&#34;int64&#34;)
+        label_length = tf.cast(tf.shape(y_true)[1], dtype=&#34;int64&#34;)
+
+        input_length = input_length * tf.ones(shape=(batch_len, 1), dtype=&#34;int64&#34;)
+        label_length = label_length * tf.ones(shape=(batch_len, 1), dtype=&#34;int64&#34;)
+
+        loss = self.loss_fn(y_true, y_pred, input_length, label_length)
+        self.add_loss(loss)
+
+        # At test time, just return the computed predictions
+        return y_pred
+
+def my_model(encoder, max_length):
+    inputs = layers.Input(
+        shape=(max_length,), name=&#34;image&#34;, dtype=&#34;float32&#34;
+    )
+    labels = layers.Input(name=&#34;label&#34;, shape=(None,), dtype=&#34;float32&#34;)
+
+    log_melgram_layer = LogMelgramLayer(
+        num_fft=512,
+        hop_length=128,
+    )
+
+    log_melgrams = log_melgram_layer(inputs)
+
+    # First conv block
+    x = layers.Conv2D(
+        128,
+        (3, 3),
+        activation=&#34;relu&#34;,
+        kernel_initializer=&#34;he_normal&#34;,
+        padding=&#34;same&#34;,
+        name=&#34;Conv1&#34;,
+    )(log_melgrams)
+
+    x = layers.MaxPooling2D((2, 2), name=&#34;pool1&#34;)(x)
+
+    x = layers.BatchNormalization()(x)
+    # Second conv block
+    x = layers.Conv2D(
+        256,
+        (3, 3),
+        activation=&#34;relu&#34;,
+        kernel_initializer=&#34;he_normal&#34;,
+        padding=&#34;same&#34;,
+        name=&#34;Conv2&#34;,
+    )(x)
+    x = layers.MaxPooling2D((2, 2), name=&#34;pool2&#34;)(x)
+
+    x = layers.BatchNormalization()(x)
+
+    x = layers.Conv2D(
+        256,
+        (3, 3),
+        activation=&#34;relu&#34;,
+        kernel_initializer=&#34;he_normal&#34;,
+        padding=&#34;same&#34;,
+        name=&#34;Conv3&#34;,
+    )(x)
+    
+    x = layers.MaxPooling2D((2, 2), name=&#34;pool3&#34;)(x)
+
+    x = layers.Conv2D(
+        256,
+        (3, 3),
+        activation=&#34;relu&#34;,
+        kernel_initializer=&#34;he_normal&#34;,
+        padding=&#34;same&#34;,
+        name=&#34;Conv4&#34;,
+    )(x)
+    
+    x = layers.BatchNormalization()(x)
+
+    # We have used two max pool with pool size and strides 2.
+    # Hence, downsampled feature maps are 4x smaller. The number of
+    # filters in the last layer is 64. Reshape accordingly before
+    # passing the output to the RNN part of the model
+    if tf.__version__ &gt;= &#39;2.3&#39;:
+        new_shape = (x.type_spec.shape[-3], x.type_spec.shape[-2]*x.type_spec.shape[-1])
+    else:
+        new_shape = (x.shape[-3], x.shape[-2]*x.shape[-1])
+    x = layers.Reshape(target_shape=new_shape, name=&#34;reshape&#34;)(x)
+
+    x = layers.Dense(256, activation=&#34;relu&#34;, name=&#34;dense1&#34;)(x)
+    x = layers.Dropout(0.2)(x)
+
+    x = layers.Dense(128, activation=&#34;relu&#34;, name=&#34;dense2&#34;)(x)
+    x = layers.Dropout(0.2)(x)
+    
+    # RNNs
+    x = layers.LSTM(256, return_sequences=True, dropout=0.25)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.LSTM(256, return_sequences=True, dropout=0.25)(x)
+    x = layers.BatchNormalization()(x)
+    # Output layer
+    x = layers.Dense(
+        len(encoder.classes_) + 1, activation=&#34;softmax&#34;, name=&#34;dense_final&#34;
+    )(x)
+
+    # Add CTC layer for calculating CTC loss at each step
+    output = CTCLayer(name=&#34;ctc_loss&#34;)(labels, x)
+
+    # Define the model
+    model = tf.keras.models.Model(
+        inputs=[inputs, labels], outputs=output, name=&#34;stt_model_v2&#34;
+    )
+    # Optimizer
+    opt = tf.keras.optimizers.Adam()
+    # Compile the model and return
+    model.compile(optimizer=opt)
+    
+    return model</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="dags.src.models.initial.new_model.my_model"><code class="name flex">
+<span>def <span class="ident">my_model</span></span>(<span>encoder, max_length)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def my_model(encoder, max_length):
+    inputs = layers.Input(
+        shape=(max_length,), name=&#34;image&#34;, dtype=&#34;float32&#34;
+    )
+    labels = layers.Input(name=&#34;label&#34;, shape=(None,), dtype=&#34;float32&#34;)
+
+    log_melgram_layer = LogMelgramLayer(
+        num_fft=512,
+        hop_length=128,
+    )
+
+    log_melgrams = log_melgram_layer(inputs)
+
+    # First conv block
+    x = layers.Conv2D(
+        128,
+        (3, 3),
+        activation=&#34;relu&#34;,
+        kernel_initializer=&#34;he_normal&#34;,
+        padding=&#34;same&#34;,
+        name=&#34;Conv1&#34;,
+    )(log_melgrams)
+
+    x = layers.MaxPooling2D((2, 2), name=&#34;pool1&#34;)(x)
+
+    x = layers.BatchNormalization()(x)
+    # Second conv block
+    x = layers.Conv2D(
+        256,
+        (3, 3),
+        activation=&#34;relu&#34;,
+        kernel_initializer=&#34;he_normal&#34;,
+        padding=&#34;same&#34;,
+        name=&#34;Conv2&#34;,
+    )(x)
+    x = layers.MaxPooling2D((2, 2), name=&#34;pool2&#34;)(x)
+
+    x = layers.BatchNormalization()(x)
+
+    x = layers.Conv2D(
+        256,
+        (3, 3),
+        activation=&#34;relu&#34;,
+        kernel_initializer=&#34;he_normal&#34;,
+        padding=&#34;same&#34;,
+        name=&#34;Conv3&#34;,
+    )(x)
+    
+    x = layers.MaxPooling2D((2, 2), name=&#34;pool3&#34;)(x)
+
+    x = layers.Conv2D(
+        256,
+        (3, 3),
+        activation=&#34;relu&#34;,
+        kernel_initializer=&#34;he_normal&#34;,
+        padding=&#34;same&#34;,
+        name=&#34;Conv4&#34;,
+    )(x)
+    
+    x = layers.BatchNormalization()(x)
+
+    # We have used two max pool with pool size and strides 2.
+    # Hence, downsampled feature maps are 4x smaller. The number of
+    # filters in the last layer is 64. Reshape accordingly before
+    # passing the output to the RNN part of the model
+    if tf.__version__ &gt;= &#39;2.3&#39;:
+        new_shape = (x.type_spec.shape[-3], x.type_spec.shape[-2]*x.type_spec.shape[-1])
+    else:
+        new_shape = (x.shape[-3], x.shape[-2]*x.shape[-1])
+    x = layers.Reshape(target_shape=new_shape, name=&#34;reshape&#34;)(x)
+
+    x = layers.Dense(256, activation=&#34;relu&#34;, name=&#34;dense1&#34;)(x)
+    x = layers.Dropout(0.2)(x)
+
+    x = layers.Dense(128, activation=&#34;relu&#34;, name=&#34;dense2&#34;)(x)
+    x = layers.Dropout(0.2)(x)
+    
+    # RNNs
+    x = layers.LSTM(256, return_sequences=True, dropout=0.25)(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.LSTM(256, return_sequences=True, dropout=0.25)(x)
+    x = layers.BatchNormalization()(x)
+    # Output layer
+    x = layers.Dense(
+        len(encoder.classes_) + 1, activation=&#34;softmax&#34;, name=&#34;dense_final&#34;
+    )(x)
+
+    # Add CTC layer for calculating CTC loss at each step
+    output = CTCLayer(name=&#34;ctc_loss&#34;)(labels, x)
+
+    # Define the model
+    model = tf.keras.models.Model(
+        inputs=[inputs, labels], outputs=output, name=&#34;stt_model_v2&#34;
+    )
+    # Optimizer
+    opt = tf.keras.optimizers.Adam()
+    # Compile the model and return
+    model.compile(optimizer=opt)
+    
+    return model</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="dags.src.models.initial.new_model.CTCLayer"><code class="flex name class">
+<span>class <span class="ident">CTCLayer</span></span>
+<span>(</span><span>name=None, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is the class from which all layers inherit.</p>
+<p>A layer is a callable object that takes as input one or more tensors and
+that outputs one or more tensors. It involves <em>computation</em>, defined
+in the <code>call()</code> method, and a <em>state</em> (weight variables), defined
+either in the constructor <code>__init__()</code> or in the <code>build()</code> method.</p>
+<p>Users will just instantiate a layer and then treat it as a callable.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>trainable</code></strong></dt>
+<dd>Boolean, whether the layer's variables should be trainable.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>String name of the layer.</dd>
+<dt><strong><code>dtype</code></strong></dt>
+<dd>The dtype of the layer's computations and weights. Can also be a
+<code>tf.keras.mixed_precision.Policy</code>, which allows the computation and weight
+dtype to differ. Default of <code>None</code> means to use
+<code>tf.keras.mixed_precision.global_policy()</code>, which is a float32 policy
+unless set to different value.</dd>
+<dt><strong><code>dynamic</code></strong></dt>
+<dd>Set this to <code>True</code> if your layer should only be run eagerly, and
+should not be used to generate a static computation graph.
+This would be the case for a Tree-RNN or a recursive network,
+for example, or generally for any layer that manipulates tensors
+using Python control flow. If <code>False</code>, we assume that the layer can
+safely be used to generate a static computation graph.</dd>
+</dl>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the layer (string).</dd>
+<dt><strong><code>dtype</code></strong></dt>
+<dd>The dtype of the layer's weights.</dd>
+<dt><strong><code>variable_dtype</code></strong></dt>
+<dd>Alias of <code>dtype</code>.</dd>
+<dt><strong><code>compute_dtype</code></strong></dt>
+<dd>The dtype of the layer's computations. Layers automatically
+cast inputs to this dtype which causes the computations and output to also
+be in this dtype. When mixed precision is used with a
+<code>tf.keras.mixed_precision.Policy</code>, this will be different than
+<code>variable_dtype</code>.</dd>
+<dt><strong><code>dtype_policy</code></strong></dt>
+<dd>The layer's dtype policy. See the
+<code>tf.keras.mixed_precision.Policy</code> documentation for details.</dd>
+<dt><strong><code>trainable_weights</code></strong></dt>
+<dd>List of variables to be included in backprop.</dd>
+<dt><strong><code>non_trainable_weights</code></strong></dt>
+<dd>List of variables that should not be
+included in backprop.</dd>
+<dt><strong><code>weights</code></strong></dt>
+<dd>The concatenation of the lists trainable_weights and
+non_trainable_weights (in this order).</dd>
+<dt><strong><code>trainable</code></strong></dt>
+<dd>Whether the layer should be trained (boolean), i.e. whether
+its potentially-trainable weights should be returned as part of
+<code>layer.trainable_weights</code>.</dd>
+<dt><strong><code>input_spec</code></strong></dt>
+<dd>Optional (list of) <code>InputSpec</code> object(s) specifying the
+constraints on inputs that can be accepted by the layer.</dd>
+</dl>
+<p>We recommend that descendants of <code>Layer</code> implement the following methods:</p>
+<ul>
+<li><code>__init__()</code>: Defines custom layer attributes, and creates layer state
+variables that do not depend on input shapes, using <code>add_weight()</code>.</li>
+<li><code>build(self, input_shape)</code>: This method can be used to create weights that
+depend on the shape(s) of the input(s), using <code>add_weight()</code>. <code>__call__()</code>
+will automatically build the layer (if it has not been built yet) by
+calling <code>build()</code>.</li>
+<li><code>call(self, inputs, *args, **kwargs)</code>: Called in <code>__call__</code> after making
+sure <code>build()</code> has been called. <code>call()</code> performs the logic of applying the
+layer to the input tensors (which should be passed in as argument).
+Two reserved keyword arguments you can optionally use in <code>call()</code> are:<ul>
+<li><code>training</code> (boolean, whether the call is in inference mode or training
+mode). See more details in <a href="https://www.tensorflow.org/guide/keras/custom_layers_and_models#privileged_training_argument_in_the_call_method">the layer/model subclassing guide</a></li>
+<li><code>mask</code> (boolean tensor encoding masked timesteps in the input, used
+in RNN layers). See more details in <a href="https://www.tensorflow.org/guide/keras/custom_layers_and_models#privileged_mask_argument_in_the_call_method">the layer/model subclassing guide</a>
+A typical signature for this method is <code>call(self, inputs)</code>, and user could
+optionally add <code>training</code> and <code>mask</code> if the layer need them. <code>*args</code> and
+<code>**kwargs</code> is only useful for future extension when more input parameters
+are planned to be added.</li>
+</ul>
+</li>
+<li><code>get_config(self)</code>: Returns a dictionary containing the configuration used
+to initialize this layer. If the keys differ from the arguments
+in <code>__init__</code>, then override <code>from_config(self)</code> as well.
+This method is used when saving
+the layer or a model that contains this layer.</li>
+</ul>
+<p>Examples:</p>
+<p>Here's a basic example: a layer with two variables, <code>w</code> and <code>b</code>,
+that returns <code>y = w . x + b</code>.
+It shows how to implement <code>build()</code> and <code>call()</code>.
+Variables set as attributes of a layer are tracked as weights
+of the layers (in <code>layer.weights</code>).</p>
+<pre><code class="language-python">class SimpleDense(Layer):
+
+  def __init__(self, units=32):
+      super(SimpleDense, self).__init__()
+      self.units = units
+
+  def build(self, input_shape):  # Create the state of the layer (weights)
+    w_init = tf.random_normal_initializer()
+    self.w = tf.Variable(
+        initial_value=w_init(shape=(input_shape[-1], self.units),
+                             dtype='float32'),
+        trainable=True)
+    b_init = tf.zeros_initializer()
+    self.b = tf.Variable(
+        initial_value=b_init(shape=(self.units,), dtype='float32'),
+        trainable=True)
+
+  def call(self, inputs):  # Defines the computation from inputs to outputs
+      return tf.matmul(inputs, self.w) + self.b
+
+# Instantiates the layer.
+linear_layer = SimpleDense(4)
+
+# This will also call `build(input_shape)` and create the weights.
+y = linear_layer(tf.ones((2, 2)))
+assert len(linear_layer.weights) == 2
+
+# These weights are trainable, so they're listed in `trainable_weights`:
+assert len(linear_layer.trainable_weights) == 2
+</code></pre>
+<p>Note that the method <code>add_weight()</code> offers a shortcut to create weights:</p>
+<pre><code class="language-python">class SimpleDense(Layer):
+
+  def __init__(self, units=32):
+      super(SimpleDense, self).__init__()
+      self.units = units
+
+  def build(self, input_shape):
+      self.w = self.add_weight(shape=(input_shape[-1], self.units),
+                               initializer='random_normal',
+                               trainable=True)
+      self.b = self.add_weight(shape=(self.units,),
+                               initializer='random_normal',
+                               trainable=True)
+
+  def call(self, inputs):
+      return tf.matmul(inputs, self.w) + self.b
+</code></pre>
+<p>Besides trainable weights, updated via backpropagation during training,
+layers can also have non-trainable weights. These weights are meant to
+be updated manually during <code>call()</code>. Here's a example layer that computes
+the running sum of its inputs:</p>
+<pre><code class="language-python">class ComputeSum(Layer):
+
+  def __init__(self, input_dim):
+      super(ComputeSum, self).__init__()
+      # Create a non-trainable weight.
+      self.total = tf.Variable(initial_value=tf.zeros((input_dim,)),
+                               trainable=False)
+
+  def call(self, inputs):
+      self.total.assign_add(tf.reduce_sum(inputs, axis=0))
+      return self.total
+
+my_sum = ComputeSum(2)
+x = tf.ones((2, 2))
+
+y = my_sum(x)
+print(y.numpy())  # [2. 2.]
+
+y = my_sum(x)
+print(y.numpy())  # [4. 4.]
+
+assert my_sum.weights == [my_sum.total]
+assert my_sum.non_trainable_weights == [my_sum.total]
+assert my_sum.trainable_weights == []
+</code></pre>
+<p>For more information about creating layers, see the guide
+<a href="https://www.tensorflow.org/guide/keras/custom_layers_and_models">Making new Layers and Models via subclassing</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CTCLayer(layers.Layer):
+    def __init__(self, name=None, **kwargs):
+        super().__init__(name=name)
+        self.loss_fn = tf.keras.backend.ctc_batch_cost
+
+    def call(self, y_true, y_pred):
+        # Compute the training-time loss value and add it
+        # to the layer using `self.add_loss()`.
+        batch_len = tf.cast(tf.shape(y_true)[0], dtype=&#34;int64&#34;)
+        input_length = tf.cast(tf.shape(y_pred)[1], dtype=&#34;int64&#34;)
+        label_length = tf.cast(tf.shape(y_true)[1], dtype=&#34;int64&#34;)
+
+        input_length = input_length * tf.ones(shape=(batch_len, 1), dtype=&#34;int64&#34;)
+        label_length = label_length * tf.ones(shape=(batch_len, 1), dtype=&#34;int64&#34;)
+
+        loss = self.loss_fn(y_true, y_pred, input_length, label_length)
+        self.add_loss(loss)
+
+        # At test time, just return the computed predictions
+        return y_pred</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>keras.engine.base_layer.Layer</li>
+<li>tensorflow.python.module.module.Module</li>
+<li>tensorflow.python.training.tracking.tracking.AutoTrackable</li>
+<li>tensorflow.python.training.tracking.base.Trackable</li>
+<li>keras.utils.version_utils.LayerVersionSelector</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dags.src.models.initial.new_model.CTCLayer.call"><code class="name flex">
+<span>def <span class="ident">call</span></span>(<span>self, y_true, y_pred)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is where the layer's logic lives.</p>
+<p>Note here that <code>call()</code> method in <code>tf.keras</code> is little bit different
+from <code>keras</code> API. In <code>keras</code> API, you can pass support masking for
+layers as additional arguments. Whereas <code>tf.keras</code> has <code>compute_mask()</code>
+method to support masking.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>inputs</code></strong></dt>
+<dd>Input tensor, or dict/list/tuple of input tensors.
+The first positional <code>inputs</code> argument is subject to special rules:
+- <code>inputs</code> must be explicitly passed. A layer cannot have zero
+arguments, and <code>inputs</code> cannot be provided via the default value
+of a keyword argument.
+- NumPy array or Python scalar values in <code>inputs</code> get cast as tensors.
+- Keras mask metadata is only collected from <code>inputs</code>.
+- Layers are built (<code>build(input_shape)</code> method)
+using shape info from <code>inputs</code> only.
+- <code>input_spec</code> compatibility is only checked against <code>inputs</code>.
+- Mixed precision input casting is only applied to <code>inputs</code>.
+If a layer has tensor arguments in <code>*args</code> or <code>**kwargs</code>, their
+casting behavior in mixed precision should be handled manually.
+- The SavedModel input specification is generated using <code>inputs</code> only.
+- Integration with various ecosystem packages like TFMOT, TFLite,
+TF.js, etc is only supported for <code>inputs</code> and not for tensors in
+positional and keyword arguments.</dd>
+<dt><strong><code>*args</code></strong></dt>
+<dd>Additional positional arguments. May contain tensors, although
+this is not recommended, for the reasons above.</dd>
+<dt><strong><code>**kwargs</code></strong></dt>
+<dd>Additional keyword arguments. May contain tensors, although
+this is not recommended, for the reasons above.
+The following optional keyword arguments are reserved:
+- <code>training</code>: Boolean scalar tensor of Python boolean indicating
+whether the <code>call</code> is meant for training or inference.
+- <code>mask</code>: Boolean input mask. If the layer's <code>call()</code> method takes a
+<code>mask</code> argument, its default value will be set to the mask generated
+for <code>inputs</code> by the previous layer (if <code>input</code> did come from a layer
+that generated a corresponding mask, i.e. if it came from a Keras
+layer with masking support).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A tensor or list/tuple of tensors.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def call(self, y_true, y_pred):
+    # Compute the training-time loss value and add it
+    # to the layer using `self.add_loss()`.
+    batch_len = tf.cast(tf.shape(y_true)[0], dtype=&#34;int64&#34;)
+    input_length = tf.cast(tf.shape(y_pred)[1], dtype=&#34;int64&#34;)
+    label_length = tf.cast(tf.shape(y_true)[1], dtype=&#34;int64&#34;)
+
+    input_length = input_length * tf.ones(shape=(batch_len, 1), dtype=&#34;int64&#34;)
+    label_length = label_length * tf.ones(shape=(batch_len, 1), dtype=&#34;int64&#34;)
+
+    loss = self.loss_fn(y_true, y_pred, input_length, label_length)
+    self.add_loss(loss)
+
+    # At test time, just return the computed predictions
+    return y_pred</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="dags.src.models.initial.new_model.LogMelgramLayer"><code class="flex name class">
+<span>class <span class="ident">LogMelgramLayer</span></span>
+<span>(</span><span>num_fft, hop_length, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is the class from which all layers inherit.</p>
+<p>A layer is a callable object that takes as input one or more tensors and
+that outputs one or more tensors. It involves <em>computation</em>, defined
+in the <code>call()</code> method, and a <em>state</em> (weight variables), defined
+either in the constructor <code>__init__()</code> or in the <code>build()</code> method.</p>
+<p>Users will just instantiate a layer and then treat it as a callable.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>trainable</code></strong></dt>
+<dd>Boolean, whether the layer's variables should be trainable.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>String name of the layer.</dd>
+<dt><strong><code>dtype</code></strong></dt>
+<dd>The dtype of the layer's computations and weights. Can also be a
+<code>tf.keras.mixed_precision.Policy</code>, which allows the computation and weight
+dtype to differ. Default of <code>None</code> means to use
+<code>tf.keras.mixed_precision.global_policy()</code>, which is a float32 policy
+unless set to different value.</dd>
+<dt><strong><code>dynamic</code></strong></dt>
+<dd>Set this to <code>True</code> if your layer should only be run eagerly, and
+should not be used to generate a static computation graph.
+This would be the case for a Tree-RNN or a recursive network,
+for example, or generally for any layer that manipulates tensors
+using Python control flow. If <code>False</code>, we assume that the layer can
+safely be used to generate a static computation graph.</dd>
+</dl>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the layer (string).</dd>
+<dt><strong><code>dtype</code></strong></dt>
+<dd>The dtype of the layer's weights.</dd>
+<dt><strong><code>variable_dtype</code></strong></dt>
+<dd>Alias of <code>dtype</code>.</dd>
+<dt><strong><code>compute_dtype</code></strong></dt>
+<dd>The dtype of the layer's computations. Layers automatically
+cast inputs to this dtype which causes the computations and output to also
+be in this dtype. When mixed precision is used with a
+<code>tf.keras.mixed_precision.Policy</code>, this will be different than
+<code>variable_dtype</code>.</dd>
+<dt><strong><code>dtype_policy</code></strong></dt>
+<dd>The layer's dtype policy. See the
+<code>tf.keras.mixed_precision.Policy</code> documentation for details.</dd>
+<dt><strong><code>trainable_weights</code></strong></dt>
+<dd>List of variables to be included in backprop.</dd>
+<dt><strong><code>non_trainable_weights</code></strong></dt>
+<dd>List of variables that should not be
+included in backprop.</dd>
+<dt><strong><code>weights</code></strong></dt>
+<dd>The concatenation of the lists trainable_weights and
+non_trainable_weights (in this order).</dd>
+<dt><strong><code>trainable</code></strong></dt>
+<dd>Whether the layer should be trained (boolean), i.e. whether
+its potentially-trainable weights should be returned as part of
+<code>layer.trainable_weights</code>.</dd>
+<dt><strong><code>input_spec</code></strong></dt>
+<dd>Optional (list of) <code>InputSpec</code> object(s) specifying the
+constraints on inputs that can be accepted by the layer.</dd>
+</dl>
+<p>We recommend that descendants of <code>Layer</code> implement the following methods:</p>
+<ul>
+<li><code>__init__()</code>: Defines custom layer attributes, and creates layer state
+variables that do not depend on input shapes, using <code>add_weight()</code>.</li>
+<li><code>build(self, input_shape)</code>: This method can be used to create weights that
+depend on the shape(s) of the input(s), using <code>add_weight()</code>. <code>__call__()</code>
+will automatically build the layer (if it has not been built yet) by
+calling <code>build()</code>.</li>
+<li><code>call(self, inputs, *args, **kwargs)</code>: Called in <code>__call__</code> after making
+sure <code>build()</code> has been called. <code>call()</code> performs the logic of applying the
+layer to the input tensors (which should be passed in as argument).
+Two reserved keyword arguments you can optionally use in <code>call()</code> are:<ul>
+<li><code>training</code> (boolean, whether the call is in inference mode or training
+mode). See more details in <a href="https://www.tensorflow.org/guide/keras/custom_layers_and_models#privileged_training_argument_in_the_call_method">the layer/model subclassing guide</a></li>
+<li><code>mask</code> (boolean tensor encoding masked timesteps in the input, used
+in RNN layers). See more details in <a href="https://www.tensorflow.org/guide/keras/custom_layers_and_models#privileged_mask_argument_in_the_call_method">the layer/model subclassing guide</a>
+A typical signature for this method is <code>call(self, inputs)</code>, and user could
+optionally add <code>training</code> and <code>mask</code> if the layer need them. <code>*args</code> and
+<code>**kwargs</code> is only useful for future extension when more input parameters
+are planned to be added.</li>
+</ul>
+</li>
+<li><code>get_config(self)</code>: Returns a dictionary containing the configuration used
+to initialize this layer. If the keys differ from the arguments
+in <code>__init__</code>, then override <code>from_config(self)</code> as well.
+This method is used when saving
+the layer or a model that contains this layer.</li>
+</ul>
+<p>Examples:</p>
+<p>Here's a basic example: a layer with two variables, <code>w</code> and <code>b</code>,
+that returns <code>y = w . x + b</code>.
+It shows how to implement <code>build()</code> and <code>call()</code>.
+Variables set as attributes of a layer are tracked as weights
+of the layers (in <code>layer.weights</code>).</p>
+<pre><code class="language-python">class SimpleDense(Layer):
+
+  def __init__(self, units=32):
+      super(SimpleDense, self).__init__()
+      self.units = units
+
+  def build(self, input_shape):  # Create the state of the layer (weights)
+    w_init = tf.random_normal_initializer()
+    self.w = tf.Variable(
+        initial_value=w_init(shape=(input_shape[-1], self.units),
+                             dtype='float32'),
+        trainable=True)
+    b_init = tf.zeros_initializer()
+    self.b = tf.Variable(
+        initial_value=b_init(shape=(self.units,), dtype='float32'),
+        trainable=True)
+
+  def call(self, inputs):  # Defines the computation from inputs to outputs
+      return tf.matmul(inputs, self.w) + self.b
+
+# Instantiates the layer.
+linear_layer = SimpleDense(4)
+
+# This will also call `build(input_shape)` and create the weights.
+y = linear_layer(tf.ones((2, 2)))
+assert len(linear_layer.weights) == 2
+
+# These weights are trainable, so they're listed in `trainable_weights`:
+assert len(linear_layer.trainable_weights) == 2
+</code></pre>
+<p>Note that the method <code>add_weight()</code> offers a shortcut to create weights:</p>
+<pre><code class="language-python">class SimpleDense(Layer):
+
+  def __init__(self, units=32):
+      super(SimpleDense, self).__init__()
+      self.units = units
+
+  def build(self, input_shape):
+      self.w = self.add_weight(shape=(input_shape[-1], self.units),
+                               initializer='random_normal',
+                               trainable=True)
+      self.b = self.add_weight(shape=(self.units,),
+                               initializer='random_normal',
+                               trainable=True)
+
+  def call(self, inputs):
+      return tf.matmul(inputs, self.w) + self.b
+</code></pre>
+<p>Besides trainable weights, updated via backpropagation during training,
+layers can also have non-trainable weights. These weights are meant to
+be updated manually during <code>call()</code>. Here's a example layer that computes
+the running sum of its inputs:</p>
+<pre><code class="language-python">class ComputeSum(Layer):
+
+  def __init__(self, input_dim):
+      super(ComputeSum, self).__init__()
+      # Create a non-trainable weight.
+      self.total = tf.Variable(initial_value=tf.zeros((input_dim,)),
+                               trainable=False)
+
+  def call(self, inputs):
+      self.total.assign_add(tf.reduce_sum(inputs, axis=0))
+      return self.total
+
+my_sum = ComputeSum(2)
+x = tf.ones((2, 2))
+
+y = my_sum(x)
+print(y.numpy())  # [2. 2.]
+
+y = my_sum(x)
+print(y.numpy())  # [4. 4.]
+
+assert my_sum.weights == [my_sum.total]
+assert my_sum.non_trainable_weights == [my_sum.total]
+assert my_sum.trainable_weights == []
+</code></pre>
+<p>For more information about creating layers, see the guide
+<a href="https://www.tensorflow.org/guide/keras/custom_layers_and_models">Making new Layers and Models via subclassing</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LogMelgramLayer(tf.keras.layers.Layer):
+    def __init__(self, num_fft, hop_length, **kwargs):
+        super(LogMelgramLayer, self).__init__(**kwargs)
+        self.num_fft = num_fft
+        self.hop_length = hop_length
+
+        assert num_fft // 2 + 1 == NUM_FREQS
+        lin_to_mel_matrix = tf.signal.linear_to_mel_weight_matrix(
+            num_mel_bins=NUM_MEL,
+            num_spectrogram_bins=NUM_FREQS,
+            sample_rate=SAMPLE_RATE,
+            lower_edge_hertz=F_MIN,
+            upper_edge_hertz=F_MAX,
+        )
+
+        self.lin_to_mel_matrix = lin_to_mel_matrix
+
+    def build(self, input_shape):
+        self.non_trainable_weights.append(self.lin_to_mel_matrix)
+        super(LogMelgramLayer, self).build(input_shape)
+
+    def call(self, input):
+        &#34;&#34;&#34;
+        Args:
+            input (tensor): Batch of mono waveform, shape: (None, N)
+        Returns:
+            log_melgrams (tensor): Batch of log mel-spectrograms, shape: (None, num_frame, mel_bins, channel=1)
+        &#34;&#34;&#34;
+
+        def _tf_log10(x):
+            numerator = tf.math.log(x)
+            denominator = tf.math.log(tf.constant(10, dtype=numerator.dtype))
+            return numerator / denominator
+      
+        # tf.signal.stft seems to be applied along the last axis
+        stfts = tf.signal.stft(
+            input, frame_length=self.num_fft, frame_step=self.hop_length
+        )
+        mag_stfts = tf.abs(stfts)
+
+        melgrams = tf.tensordot(tf.square(mag_stfts), self.lin_to_mel_matrix, axes=[2, 0])
+        log_melgrams = _tf_log10(melgrams + 10**-5)
+        return tf.expand_dims(log_melgrams, 3)
+
+    def get_config(self):
+        config = {&#39;num_fft&#39;: self.num_fft, &#39;hop_length&#39;: self.hop_length}
+        base_config = super(LogMelgramLayer, self).get_config()
+        return dict(list(config.items()) + list(base_config.items()))</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>keras.engine.base_layer.Layer</li>
+<li>tensorflow.python.module.module.Module</li>
+<li>tensorflow.python.training.tracking.tracking.AutoTrackable</li>
+<li>tensorflow.python.training.tracking.base.Trackable</li>
+<li>keras.utils.version_utils.LayerVersionSelector</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="dags.src.models.initial.new_model.LogMelgramLayer.build"><code class="name flex">
+<span>def <span class="ident">build</span></span>(<span>self, input_shape)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates the variables of the layer (optional, for subclass implementers).</p>
+<p>This is a method that implementers of subclasses of <code>Layer</code> or <code>Model</code>
+can override if they need a state-creation step in-between
+layer instantiation and layer call.</p>
+<p>This is typically used to create the weights of <code>Layer</code> subclasses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>input_shape</code></strong></dt>
+<dd>Instance of <code>TensorShape</code>, or list of instances of
+<code>TensorShape</code> if the layer expects a list of inputs
+(one instance per input).</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build(self, input_shape):
+    self.non_trainable_weights.append(self.lin_to_mel_matrix)
+    super(LogMelgramLayer, self).build(input_shape)</code></pre>
+</details>
+</dd>
+<dt id="dags.src.models.initial.new_model.LogMelgramLayer.call"><code class="name flex">
+<span>def <span class="ident">call</span></span>(<span>self, input)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>input</code></strong> :&ensp;<code>tensor</code></dt>
+<dd>Batch of mono waveform, shape: (None, N)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>log_melgrams (tensor): Batch of log mel-spectrograms, shape: (None, num_frame, mel_bins, channel=1)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def call(self, input):
+    &#34;&#34;&#34;
+    Args:
+        input (tensor): Batch of mono waveform, shape: (None, N)
+    Returns:
+        log_melgrams (tensor): Batch of log mel-spectrograms, shape: (None, num_frame, mel_bins, channel=1)
+    &#34;&#34;&#34;
+
+    def _tf_log10(x):
+        numerator = tf.math.log(x)
+        denominator = tf.math.log(tf.constant(10, dtype=numerator.dtype))
+        return numerator / denominator
+  
+    # tf.signal.stft seems to be applied along the last axis
+    stfts = tf.signal.stft(
+        input, frame_length=self.num_fft, frame_step=self.hop_length
+    )
+    mag_stfts = tf.abs(stfts)
+
+    melgrams = tf.tensordot(tf.square(mag_stfts), self.lin_to_mel_matrix, axes=[2, 0])
+    log_melgrams = _tf_log10(melgrams + 10**-5)
+    return tf.expand_dims(log_melgrams, 3)</code></pre>
+</details>
+</dd>
+<dt id="dags.src.models.initial.new_model.LogMelgramLayer.get_config"><code class="name flex">
+<span>def <span class="ident">get_config</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the config of the layer.</p>
+<p>A layer config is a Python dictionary (serializable)
+containing the configuration of a layer.
+The same layer can be reinstantiated later
+(without its trained weights) from this configuration.</p>
+<p>The config of a layer does not include connectivity
+information, nor the layer class name. These are handled
+by <code>Network</code> (one layer of abstraction above).</p>
+<p>Note that <code>get_config()</code> does not guarantee to return a fresh copy of dict
+every time it is called. The callers should make a copy of the returned dict
+if they want to modify it.</p>
+<h2 id="returns">Returns</h2>
+<p>Python dictionary.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_config(self):
+    config = {&#39;num_fft&#39;: self.num_fft, &#39;hop_length&#39;: self.hop_length}
+    base_config = super(LogMelgramLayer, self).get_config()
+    return dict(list(config.items()) + list(base_config.items()))</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="dags.src.models.initial" href="index.html">dags.src.models.initial</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="dags.src.models.initial.new_model.my_model" href="#dags.src.models.initial.new_model.my_model">my_model</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="dags.src.models.initial.new_model.CTCLayer" href="#dags.src.models.initial.new_model.CTCLayer">CTCLayer</a></code></h4>
+<ul class="">
+<li><code><a title="dags.src.models.initial.new_model.CTCLayer.call" href="#dags.src.models.initial.new_model.CTCLayer.call">call</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="dags.src.models.initial.new_model.LogMelgramLayer" href="#dags.src.models.initial.new_model.LogMelgramLayer">LogMelgramLayer</a></code></h4>
+<ul class="">
+<li><code><a title="dags.src.models.initial.new_model.LogMelgramLayer.build" href="#dags.src.models.initial.new_model.LogMelgramLayer.build">build</a></code></li>
+<li><code><a title="dags.src.models.initial.new_model.LogMelgramLayer.call" href="#dags.src.models.initial.new_model.LogMelgramLayer.call">call</a></code></li>
+<li><code><a title="dags.src.models.initial.new_model.LogMelgramLayer.get_config" href="#dags.src.models.initial.new_model.LogMelgramLayer.get_config">get_config</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
