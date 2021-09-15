@@ -17,7 +17,7 @@ jobs:
           pip install scipy
           pip install -r requirements.txt
           cd ..
-          pip install pdoc
+          pip install pdoc3
           sudo apt update
           pdoc MODULE ./dags -o docs --skip-errors
           
