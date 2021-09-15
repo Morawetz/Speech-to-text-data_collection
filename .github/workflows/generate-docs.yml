@@ -18,7 +18,6 @@ jobs:
           pip install -r requirements.txt
           pip install pdoc
           sudo apt update
-          cd ../dags
-          pdoc --html . -o documentation --force
+          pdoc MODULE ./dags -o docs
           
           echo "Generate Documentation"
