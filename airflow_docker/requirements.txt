@@ -13,3 +13,4 @@ jiwer
 kafka-python
 python_speech_features
 boto3
+airflow
