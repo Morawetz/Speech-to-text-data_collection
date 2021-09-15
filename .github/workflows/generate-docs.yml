@@ -19,6 +19,6 @@ jobs:
           cd ..
           pip install pdoc
           sudo apt update
-          pdoc MODULE ./dags -o docs
+          pdoc MODULE ./dags -o docs --skip-errors
           
           echo "Generate Documentation"
