@@ -19,6 +19,6 @@ jobs:
           cd ..
           pip install pdoc3
           sudo apt update
-          pdoc --html -o docs --skip-errors
+          pdoc ./ --html -o docs --skip-errors
           
           echo "Generate Documentation"
