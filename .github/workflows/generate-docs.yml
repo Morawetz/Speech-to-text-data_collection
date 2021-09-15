@@ -19,6 +19,6 @@ jobs:
           pip install pdoc
           sudo apt update
           cd ../dags
-          pdoc /
+          pdoc --html . -o documentation --force
           
           echo "Generate Documentation"
